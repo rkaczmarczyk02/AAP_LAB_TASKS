@@ -1,40 +1,59 @@
+# -*- coding: utf-8 -*-
+"""Testy pytest dla klasy Product -- uzupelnij!
+
+Uruchomienie: pytest test_product_pytest.py -v
+"""
+
 import pytest
 from product import Product
 
+
+# --- Fixture ---
+
 @pytest.fixture
 def product():
-    """Tworzy bazowy produkt do testów: Laptop za 1000 zł, 10 sztuk."""
-    return Product("Laptop", 1000.0, 10)
+    """Tworzy instancje Product do testow (odpowiednik setUp)."""
+    # TODO: Zwroc instancje Product, np. Product("Laptop", 2999.99, 10)
+    pass
+
+
+# --- Testy z fixture ---
 
 def test_is_available(product):
-    assert product.is_available() == True
+    """Sprawdz dostepnosc produktu."""
+    # TODO: Uzyj assert product.is_available() == True
+    pass
+
 
 def test_total_value(product):
-    # Sprawdzamy czy 1000 * 10 = 10000
-    assert product.total_value() == pytest.approx(10000.0)
+    """Sprawdz wartosc calkowita."""
+    # TODO: Uzyj assert product.total_value() == oczekiwana_wartosc
+    pass
+
+
+# --- Testy z parametryzacja ---
 
 @pytest.mark.parametrize("amount, expected_quantity", [
-    (5, 15),
-    (0, 10),
-    (100, 110),
+    # TODO: Dodaj przypadki testowe jako krotki, np.:
+    # (5, 15),   # dodanie 5 do poczatkowych 10 = 15
+    # (0, 10),   # dodanie 0 = bez zmian
+    # (100, 110),  # dodanie 100
 ])
 def test_add_stock_parametrized(product, amount, expected_quantity):
-    product.add_stock(amount)
-    assert product.quantity == expected_quantity
+    """Testuje add_stock z roznymi wartosciami."""
+    # TODO: Wywolaj product.add_stock(amount) i sprawdz product.quantity
+    pass
 
-# --- Testy Zadania Dodatkowego ---
 
-@pytest.mark.parametrize("percent, expected_price", [
-    (0, 1000.0),    # 0% zniżki -> cena bez zmian
-    (50, 500.0),    # 50% zniżki -> połowa ceny
-    (100, 0.0),     # 100% zniżki -> cena zero
-    (20, 800.0),    # 20% zniżki -> 800 zł
-])
-def test_apply_discount_valid(product, percent, expected_price):
-    product.apply_discount(percent)
-    assert product.price == pytest.approx(expected_price)
+# --- Testy bledow ---
 
-@pytest.mark.parametrize("invalid_percent", [-10, 101, 150])
-def test_apply_discount_invalid_raises(product, invalid_percent):
-    with pytest.raises(ValueError):
-        product.apply_discount(invalid_percent)
+def test_remove_stock_too_much_raises(product):
+    """Sprawdz, czy proba usuniecia za duzej ilosci rzuca ValueError."""
+    # TODO: Uzyj with pytest.raises(ValueError):
+    pass
+
+
+def test_add_stock_negative_raises(product):
+    """Sprawdz, czy ujemna wartosc w add_stock rzuca ValueError."""
+    # TODO: Uzyj with pytest.raises(ValueError):
+    pass

@@ -1,29 +1,39 @@
+# -*- coding: utf-8 -*-
+"""Klasa Product -- zadanie do samodzielnego wykonania."""
+
+
 class Product:
+    """Reprezentuje produkt w sklepie internetowym."""
+
     def __init__(self, name: str, price: float, quantity: int):
-        if price < 0 or quantity < 0:
-            raise ValueError("Cena i ilość muszą być nieujemne")
-        self.name = name
-        self.price = price
-        self.quantity = quantity
+        # TODO: Zapisz atrybuty name, price, quantity
+        # Pamietaj o walidacji: price >= 0, quantity >= 0
+        pass
 
     def add_stock(self, amount: int):
-        if amount < 0:
-            raise ValueError("Ilość musi być nieujemna")
-        self.quantity += amount
+        """Dodaje okreslona ilosc produktow do magazynu.
+
+        Raises:
+            ValueError: jesli amount jest ujemne
+        """
+        # TODO: Zaimplementuj dodawanie do magazynu
+        pass
 
     def remove_stock(self, amount: int):
-        if amount < 0 or amount > self.quantity:
-            raise ValueError("Nieprawidłowa ilość do usunięcia")
-        self.quantity -= amount
+        """Usuwa okreslona ilosc produktow z magazynu.
+
+        Raises:
+            ValueError: jesli amount jest ujemne lub wieksze niz dostepna ilosc
+        """
+        # TODO: Zaimplementuj usuwanie z magazynu
+        pass
 
     def is_available(self) -> bool:
-        return self.quantity > 0
+        """Zwraca True jesli produkt jest dostepny (quantity > 0)."""
+        # TODO: Zaimplementuj sprawdzanie dostepnosci
+        pass
 
     def total_value(self) -> float:
-        return self.price * self.quantity
-
-    def apply_discount(self, percent: float):
-        """Obniża cenę o podany procent (0-100)."""
-        if not (0 <= percent <= 100):
-            raise ValueError("Zniżka musi mieścić się w przedziale 0-100")
-        self.price = self.price * (1 - percent / 100)
+        """Zwraca calkowita wartosc produktow w magazynie (price * quantity)."""
+        # TODO: Zaimplementuj obliczanie wartosci
+        pass
